@@ -17,6 +17,8 @@ idaInit(con)
 idf.1 <- ida.data.frame('DIP.EDS4')
 dat = as.data.frame(idf.1)
 
+#dat = dat[1:10000,]
+
 colnames(dat)=c("ID","ID1","EquipNr","EquipTyp","IB1","IB2","Einsatz_DATUM","SIS_Erfassungsdatum",
                 "DATUMRUECKMELDUNG","SIS_NC","SIS_Resonator","SIS_Strahl","Einsatz_TYP","SIS_NC_Aufgewertet",
                 "SIS_Resonator_Aufgewertet","SIS_Strahl_Aufgewertet","Erfassungsdatum","IB1_Aufgewertet",
