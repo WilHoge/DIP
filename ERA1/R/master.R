@@ -1,5 +1,5 @@
-setwd("Y:/2017-04-12_Trumpf_EXA_HarveyNash/R")
-accdb_input_file <- "../data/TechnischeZuverlaessigkeit_Test-EXA2.accdb"
+setwd("~/DIP/ERA1/R")
+#accdb_input_file <- "../data/TechnischeZuverlaessigkeit_Test-EXA2.accdb"
 
 source("config.R")  # runs for ca. 30sec
 source("preprocess.R")  # loads data from accdb and preprocesses it into R
@@ -16,9 +16,9 @@ dat_corrected <- bind_rows(machine_DFs_corrected)
 dat_corrected <- postprocess(dat_corrected)
 dat_deaktiviert <- postprocess(dat_deaktiviert)
 
-#write.csv2(dat_corrected, file="dat_corrected.csv")
-update_table_in_accdb(dat_corrected, accdb_path=accdb_input_file, table="Tab_Zaehler", verbose=TRUE)  # ca. 5min
-update_table_in_accdb(dat_deaktiviert, accdb_path=accdb_input_file, table="Tab_Zaehler", verbose=TRUE)
+write.csv2(dat_corrected, file="dat_corrected.csv")
+#update_table_in_accdb(dat_corrected, accdb_path=accdb_input_file, table="Tab_Zaehler", verbose=TRUE)  # ca. 5min
+#update_table_in_accdb(dat_deaktiviert, accdb_path=accdb_input_file, table="Tab_Zaehler", verbose=TRUE)
 
 saveRDS(dat_corrected, file="../data/dat_corrected.rds")
 saveRDS(dat_deaktiviert, file="../data/dat_deaktiviert.rds")
