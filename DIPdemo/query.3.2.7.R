@@ -1,7 +1,7 @@
 ## Scenario 3.2.7
 
 library(ibmdbR)
-con = idaConnect('BLUDB','','')
+con = idaConnect("BLUDB;DATABASE=bludb;HOSTNAME=dashdb-enterprise-yp-dal13-30.services.dal.bluemix.net;PORT=50000;PROTOCOL=TCPIP;", uid = "wilfriedhoge", pwd = "dip44TRUMPF@", conType = "odbc")
 idaInit(con)
 
 sql = "
@@ -29,10 +29,11 @@ FROM RPL
 WHERE Number3 is NULL;
 "
 
-res = idaQuery(sql)
+idaQuery(sql)
 
 subsetAres = ida.data.frame("tdip.SubsetA")
-View(subsetAres)
+head(subsetAres)
+nrow(subsetAres)
 
 sql = "
 CREATE VIEW tdip.join1 (ID, date1, Attribute1) as
@@ -41,10 +42,11 @@ FROM dip.eds2 a, dip.eds1 b, tdip.SubsetA s
 WHERE s.ID = b.ID AND a.Number1 = b. Number1;
 "
 
-res = idaQuery(sql)
+idaQuery(sql)
 
 join1res = ida.data.frame("tdip.join1")
-View(join1res)
+head(join1res)
+nrow(join1res)
 
 sql = "
 CREATE VIEW tdip.NonBuyers1 (ID) as
@@ -54,10 +56,11 @@ WHERE NOT EXISTS (SELECT 1 FROM tdip.join1 b
                   WHERE a.id = b.id AND year(b.date1)=2017);
 "
 
-res = idaQuery(sql)
+idaQuery(sql)
 
 nonBuyers1res = ida.data.frame("tdip.NonBuyers1")
-View(nonBuyers1res)
+head(nonBuyers1res)
+nrow(nonBuyers1res)
 
 sql = "
 WITH RPL (ID, Number3) AS

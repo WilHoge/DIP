@@ -1,7 +1,7 @@
 library(arulesViz)
 library(ibmdbR)
 
-con <- idaConnect('BLUDB','','')
+con = idaConnect("BLUDB;DATABASE=bludb;HOSTNAME=dashdb-enterprise-yp-dal13-30.services.dal.bluemix.net;PORT=50000;PROTOCOL=TCPIP;", uid = "wilfriedhoge", pwd = "dip44TRUMPF@", conType = "odbc")
 idaInit(con)
 
 idaQuery("CREATE TABLE TDIP.EDS2_ASO (cluster char(20), Number1 CHAR(10))")
